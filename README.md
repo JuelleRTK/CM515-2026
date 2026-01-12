@@ -4,7 +4,7 @@ Welcome to CM 515! Course materials will be made available here and on Canvas. U
 
 | Week | Date | Topic | Language/Platform | Instructor(s) |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| 0 | Fri Jan 16 | Software Installation Party | All | All |
+| 0 | Fri Jan 16 | [Software Installation Party](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_00_setup) | All | All |
 | 1 | Wed Jan 21 | Intro/Syllabus/Overview, Files/Folders/Organization | N/A | Carol, Eliud  |
 | 2 | Mon Jan 26 | Command Line/BASH | BASH | Charli, Shady, Eliud |
 | 2 | Wed Jan 28 | Command Line/BASH/Jupyter Notebooks | BASH/Python | Charli, Shady, Eliud |
