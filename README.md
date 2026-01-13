@@ -1,6 +1,6 @@
 # CM515 - Spring 2026
 
-Welcome to CM 515! Course materials will be made available here and on Canvas. Unless otherwise noted by your instructor, all assignment submissions will be made and graded on Canvas.
+Welcome to CM 515! Course materials will be made available here and on Canvas. Unless otherwise noted by your instructor, all assignments will be submitted and graded on Canvas.
 
 | Week | Date | Topic | Language/Platform | Instructor(s) |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
