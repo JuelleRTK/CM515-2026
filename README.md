@@ -9,7 +9,7 @@ Welcome to CM 515! Course materials will be made available here and on Canvas. U
 | 2 | Mon Jan 26 | [Command Line/BASH](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_02_command_line) | BASH | Charli, Shady, Eliud |
 | 2 | Wed Jan 28 | [Command Line/BASH/Jupyter Notebooks](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_02_command_line) | BASH/Python | Charli, Shady, Eliud |
 | 3 | Mon Feb 2 | [GitHub - How and Why Part I](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_03_github) | Python | Dmitri, Brian, Kira |
-| 3 | Wed Feb 4 | [GitHub - How and Why Part I](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_03_github) | Python/Markdown | Dmitri, Brian, Kira |
+| 3 | Wed Feb 4 | [GitHub - How and Why Part II](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_03_github) | Python/Markdown | Dmitri, Brian, Kira |
 | 4 | Mon Feb 9 | [Programming Basics](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_04_programming_basics) | Python | Kira, Alex  |
 | 4 | Wed Feb 11 | [Programming Basics](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_04_programming_basics) | Python | Kira, Alex |
 | 5 | Mon Feb 16 | [Functions, Loops, Conditionals](https://github.com/Colorado-State-University-CMB/CM515-2026/tree/main/modules/wk_05_programming_2) | Python | Alex |
