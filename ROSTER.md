@@ -8,5 +8,5 @@
 | Gavin McEwen |               |               |               |
 | Cody Plaisance |               |               |               |
 | Grissy Sime Mora |               |               |               |
-| Juelle St Clair |               |               |               |
+| Juelle St Clair | JuelleRTK              |    juellest.clair@colostate.edu           |         Chef      |
 | Sarah Tallent |               |               |               |
