@@ -6,7 +6,7 @@ def add_to_list(input_list, item):
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
     
@@ -18,7 +18,7 @@ def merge_lists(list_1, list_2):
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -30,7 +30,7 @@ def remove_from_list(input_list, item):
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -42,7 +42,7 @@ def check_if_b_grade(grade):
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -63,7 +63,7 @@ def get_protein_seq(list_of_codons):
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
     
@@ -75,7 +75,7 @@ def count_word_in_file(file_path, word_of_interest):
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -87,7 +87,7 @@ def create_data_file(column_names_list, column1_data, column2_data, column3_data
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -97,7 +97,7 @@ def filter_data():
 
     ### YOUR CODE BELOW HERE ###
 
-
+    print("\nReplace this with your code!\n")
 
     ### YOUR CODE ABOVE HERE ###
 
