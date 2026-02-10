@@ -7,10 +7,13 @@ Python programming is one of the most fundamental skills needed for modern-day s
 
 ## Session 1, Monday Feb. 9
 Students will become familiar with: 
-* TBD
+* Variables and variable types
+* Built-in Python functions
+* Code structure and commenting
+* Indexing
 
 ### Assignments
-Complete the exercises in `020926_CM515_Assisgnment.ipynb` and submit as an assignment on GitHub
+Complete the exercises in `020926_CM515_Assisgnment.ipynb` and submit as an assignment on Canvas.
 
 ## Session 2, Wednesday Feb. 11
 Students will become familiar with: 
@@ -22,4 +25,4 @@ Students will become familiar with:
 * Basic data wrangling
 
 ### Assignments
-Complete the exercises in the `python_part_2_independent` folder. Run `grading.py` to test and grade your code.
+Complete the exercises in the `python_part_2_independent` folder and submit as an assignment on Canvas. Run `grading.py` to test and grade your code.
