@@ -30,6 +30,7 @@ class TestLists(unittest.TestCase):
 
         c = ["egg", "banana", "onion"]
         d = [3.14, 6.5, 7.9]
+        self.assertEqual(assignment2.merge_lists(c, d), ["egg", "banana", "onion", 3.14, 6.5, 7.9])
 
     def test_remove(self):
 
