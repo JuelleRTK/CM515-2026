@@ -2,11 +2,20 @@
 ### Run grading.py to grade your assignment. You may run this script as many times as you'd like; I will grade your submissions myself with this exact script.
 
 # This function takes an input list and an item, and adds the item to the beginning of the list.
+
+Dog_breeds = ["German Sheperd","Pit Bull", "Terrier", "Boxer"]
+
+Disney_movies = ["Alddin", "HSM","Teen Beach", "Tangled","Mulan","Hercules", "HSM"]
+
 def add_to_list(input_list, item):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    input_list.insert (0,item)
+
+    print("Adding your item to the beginning of the list")
+
+    print(input_list)
 
     ### YOUR CODE ABOVE HERE ###
     
@@ -18,11 +27,15 @@ def merge_lists(list_1, list_2):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    new_list = list_1 + list_2
+
+    print("Merging lists now")
+
+    print(new_list)
 
     ### YOUR CODE ABOVE HERE ###
 
-    return merged_list
+    return merge_lists
 
 
 # This function takes an input list and an item, and removes all copies of the item from the list.
@@ -30,7 +43,14 @@ def remove_from_list(input_list, item):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    for i in input_list:
+
+        if i == item:
+            input_list.remove(item)
+
+    print("Removing item from list.")
+
+    print (input_list)
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -42,15 +62,32 @@ def check_if_b_grade(grade):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    print("Determining if your grade is a B or not ....")
+
+    if grade < 90 and grade > 80:
+        print ("True, your grade is a B")
+
+    else:
+        print("False, your grade may be above or below a B")
+
 
     ### YOUR CODE ABOVE HERE ###
 
-    return is_b_grade
+    return check_if_b_grade 
 
 
 # This function takes a list of RNA codons, and uses a dictionary to return a list of the amino acid translations. If any codon is invalid (aka, not in the dictionary), return an empty list.
+
+
+    ### YOUR CODE BELOW HERE ###
+
+my_codons = ["UUC","GCC","AAA","GAG"]
+
+fake_codons = ["UUC","GCC","AAA","GOO"]
+
 def get_protein_seq(list_of_codons):
+
+    amino_acid_list = []
 
     codon_dict = {"UUU": "F", "UUC": "F", "UUA": "L", "UUG": "L", "UCU": "S", "UCC": "S", "UCA": "S", "UCG": "S",
                 "UAU": "Y", "UAC": "Y", "UAA": "*", "UAG": "*", "UGU": "C", "UGC": "C", "UGA": "*", "UGG": "W",
@@ -60,22 +97,34 @@ def get_protein_seq(list_of_codons):
                 "AAU": "N", "AAC": "N", "AAA": "K", "AAG": "K", "AGU": "S", "AGC": "S", "AGA": "R", "AGG": "R",
                 "GUU": "V", "GUC": "V", "GUA": "V", "GUG": "V", "GCU": "A", "GCC": "A", "GCA": "A", "GCG": "A",
                 "GAU": "D", "GAC": "D", "GAA": "E", "GAG": "E", "GGU": "G", "GGC": "G", "GGA": "G", "GGG": "G"}
-
-    ### YOUR CODE BELOW HERE ###
-
-    print("\nReplace this with your code!\n")
-
-    ### YOUR CODE ABOVE HERE ###
     
-    return output_list
+    for codon in list_of_codons:
 
+        if codon not in codon_dict:
+            print("[]")   # invalid codon found
+
+        amino_acid_list.append(codon_dict[codon])
+    
+    print (amino_acid_list)
+ 
+    ### YOUR CODE ABOVE HERE ###
+
+    return amino_acid_list
+
+    
 
 # This function reads in a text file, and counts how many times the word of interest appears.
 def count_word_in_file(file_path, word_of_interest):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    word_count = 0
+
+    for word_of_interest in file_path: 
+        word_count += 1
+
+    print (f("This word appers {word_count} times in the textfile"))
+
 
     ### YOUR CODE ABOVE HERE ###
 
@@ -91,6 +140,7 @@ def create_data_file(column_names_list, column1_data, column2_data, column3_data
 
     ### YOUR CODE ABOVE HERE ###
 
+
 # This function reads in a CSV file, "file2.csv", and outputs two new files: tav.csv contains ONLY entries with "Tav" as the technician, 
 # and andre.csv contains ONLY antries with "Andre" as the technician. Look at file2.csv before writing code!
 def filter_data():
@@ -104,3 +154,30 @@ def filter_data():
 
 
 ### TEST YOUR CODE DOWN HERE (IF YOU WANT TO) ###
+
+# Calling the add_to_list function and adding Belgian Malinois to the list
+
+add_to_list(Dog_breeds, "Belgian Malinois")
+
+# Calling the merge_lists function 
+
+merge_lists(Dog_breeds,Disney_movies)
+
+# Calling remove_from_list function
+
+remove_from_list(Disney_movies, "HSM")
+
+# Calling check_if_b_grade function
+
+check_if_b_grade(85.5)
+check_if_b_grade(70.5)
+check_if_b_grade(90.5)
+
+# Calling get_protein_seq function
+
+get_protein_seq (my_codons)
+get_protein_seq (fake_codons)
+
+# Calling count_word_in_file 
+
+count_word_in_file ("CM515 Course/Course Work/CM515 GitHub/CM515-2026/modules/wk_04_programming_basics/python_part_2_independent/file1.txt", "And")
