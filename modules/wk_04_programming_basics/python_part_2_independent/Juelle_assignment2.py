@@ -100,11 +100,13 @@ def get_protein_seq(list_of_codons):
     
     for codon in list_of_codons:
 
-        if codon not in codon_dict:
-            print("[]")   # invalid codon found
+        if codon not in codon_dict:  # checks if all codons in the list are valid
+
+            print("There is an invalid codon in your list")
+            return []
 
         amino_acid_list.append(codon_dict[codon])
-    
+
     print (amino_acid_list)
  
     ### YOUR CODE ABOVE HERE ###
@@ -114,21 +116,28 @@ def get_protein_seq(list_of_codons):
     
 
 # This function reads in a text file, and counts how many times the word of interest appears.
-def count_word_in_file(file_path, word_of_interest):
+def count_word_in_file(input_file, word_of_interest):
 
     ### YOUR CODE BELOW HERE ###
 
     word_count = 0
 
-    for word_of_interest in file_path: 
-        word_count += 1
+    with open (input_file, "r") as file:
 
-    print (f("This word appers {word_count} times in the textfile"))
+        for line in file:                  # iterates over every line in the file but not individual words
+
+            for word in line.split():         # iterates over every word in every line using the split function to split the line into individual words
+
+                if word == word_of_interest:   # this line tells python to check if the word of interest is in the line going word by word
+                
+                    word_count += 1
+
+    print (f"This word appears {word_count} times in the textfile")
 
 
     ### YOUR CODE ABOVE HERE ###
 
-    return word_count
+    return
 
 
 # This function takes a list of 3 column names, and a list of data for each column (each data list is the same length), then outputs a correctly-formatted CSV file "data.csv".
@@ -142,8 +151,9 @@ def create_data_file(column_names_list, column1_data, column2_data, column3_data
 
 
 # This function reads in a CSV file, "file2.csv", and outputs two new files: tav.csv contains ONLY entries with "Tav" as the technician, 
-# and andre.csv contains ONLY antries with "Andre" as the technician. Look at file2.csv before writing code!
-def filter_data():
+# and andre.csv contains ONLY entries with "Andre" as the technician. Look at file2.csv before writing code!
+def filter_data(input_file_csv):
+
 
     ### YOUR CODE BELOW HERE ###
 
@@ -152,32 +162,40 @@ def filter_data():
     ### YOUR CODE ABOVE HERE ###
 
 
+### AI Statement I did not use AI to generate my code, only to point out what is correct and wrong with my code without providing the solution.
+# ChatGPT prompt used: "I have code that I want to firgure out what is wrong with but do not just give me the code, explain what is wrong and right wiht my code"
+
 
 ### TEST YOUR CODE DOWN HERE (IF YOU WANT TO) ###
 
+
 # Calling the add_to_list function and adding Belgian Malinois to the list
 
-add_to_list(Dog_breeds, "Belgian Malinois")
+# add_to_list(Dog_breeds, "Belgian Malinois")
 
 # Calling the merge_lists function 
 
-merge_lists(Dog_breeds,Disney_movies)
+# merge_lists(Dog_breeds,Disney_movies)
 
 # Calling remove_from_list function
 
-remove_from_list(Disney_movies, "HSM")
+# remove_from_list(Disney_movies, "HSM")
 
 # Calling check_if_b_grade function
 
-check_if_b_grade(85.5)
-check_if_b_grade(70.5)
-check_if_b_grade(90.5)
+# check_if_b_grade(85.5)
+# check_if_b_grade(70.5)
+# check_if_b_grade(90.5)
 
 # Calling get_protein_seq function
 
-get_protein_seq (my_codons)
-get_protein_seq (fake_codons)
+#get_protein_seq (my_codons)
+#get_protein_seq (fake_codons)
 
-# Calling count_word_in_file 
+# Calling count_word_in_file function
 
-count_word_in_file ("CM515 Course/Course Work/CM515 GitHub/CM515-2026/modules/wk_04_programming_basics/python_part_2_independent/file1.txt", "And")
+#count_word_in_file ("file1.txt", "And")
+#count_word_in_file ("file1.txt", "diverged")
+#count_word_in_file ("file2.txt", "cat")
+
+# Calling create_data_file funtion
