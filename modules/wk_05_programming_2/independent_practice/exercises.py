@@ -18,13 +18,28 @@ import os
 ### PART 1: ANALYZING SEQUENCES ###
 
 # This function determines whether two string sequences are equivalent: returns True if they are equivalent, and False if they are not.
+
+seq_1 = ("ATGATGATG")
+
+seq_2 = ("TTTTTTTTT")
+
+seq_3 = ("ATGATGATG")
+
 def check_equivalence(seq_1, seq_2):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    if seq_1 == seq_2:
+
+        print(True)
+    
+    elif seq_1 != seq_2:
+
+        print(False)
+
 
     ### YOUR CODE ABOVE HERE ###
+
 
 # This function takes two string sequences and returns a list of the positions where they differ. Returns an empty list if the sequences are identical.
 # You may assume both sequences are the same length.
@@ -32,11 +47,21 @@ def get_variants(seq_1, seq_2):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    variant_list = []
+
+    for i in range(len(seq_1)):
+
+        if seq_1[i] == seq_2[i]:
+            continue
+
+        elif seq_1[i] != seq_2[i]:
+
+            variant_list.append(i)
+
 
     ### YOUR CODE ABOVE HERE ###
 
-    return variant_list
+    print(variant_list) 
 
 # This function takes a string sequence and returns the type of sequence it is: DNA, RNA, protein, or unknown.
 # Note: Technically, there are some sequences that could match multiple types. You can ignore these edge cases for this exercise.
@@ -102,3 +127,15 @@ def extract_fasta_headers(filepath):
 
 
 ### TEST YOUR CODE DOWN HERE (IF YOU WANT TO) ###
+
+# Calling check_equivalence function
+
+#check_equivalence (seq_1, seq_2)
+#check_equivalence (seq_1, seq_3)
+
+# Calling get_variants function
+
+#get_variants (seq_1,seq_2)
+#get_variants (seq_1,seq_3)
+
+# Calling get_seq_type function

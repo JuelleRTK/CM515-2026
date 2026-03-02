@@ -141,29 +141,73 @@ def count_word_in_file(input_file, word_of_interest):
 
 
 # This function takes a list of 3 column names, and a list of data for each column (each data list is the same length), then outputs a correctly-formatted CSV file "data.csv".
+
+Column_names = ["Name", "Age", "Country"]
+Names = ["Juelle", "Bruno", "Nina"]
+Ages = [22, 26, 22]
+Country = ["St. Lucia" , "Cameroon", "Equatorial Guinea"]
+
 def create_data_file(column_names_list, column1_data, column2_data, column3_data):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    if len(column_names_list) != 3:
+        print("Error: Must provide exactly 3 column names.")
+
+    with open("data.csv", "w") as file:
+
+        file.write(column_names_list[0] + "," +
+                   column_names_list[1] + "," +
+                   column_names_list[2] + "\n")
+        
+        for i in range(len(column1_data)):
+
+            row = str(column1_data[i]) + "," + \
+                  str(column2_data[i]) + "," + \
+                  str(column3_data[i]) + "\n"
+            
+            file.write(row)
+
+
+    print("File 'data.csv' created successfully.")
 
     ### YOUR CODE ABOVE HERE ###
 
 
 # This function reads in a CSV file, "file2.csv", and outputs two new files: tav.csv contains ONLY entries with "Tav" as the technician, 
 # and andre.csv contains ONLY entries with "Andre" as the technician. Look at file2.csv before writing code!
+
 def filter_data(input_file_csv):
 
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    with open(input_file_csv,"r") as fin:
+        with open("Andre_file", "w") as outfile_1:
+            with open("Tav_file", "w") as outfile_2:
+
+                header = fin.readline()
+                outfile_1.write(header)
+                outfile_2.write(header)
+
+                for line in fin:
+
+                    columns = line.strip().split(",")
+                
+                    if columns[3] == "Andre":
+                        outfile_1.write(line)
+
+                    elif columns[3] == "Tav":
+                        outfile_2.write(line)
+
+
+
+    print("Input file information transferred")
 
     ### YOUR CODE ABOVE HERE ###
 
 
-### AI Statement I did not use AI to generate my code, only to point out what is correct and wrong with my code without providing the solution.
-# ChatGPT prompt used: "I have code that I want to firgure out what is wrong with but do not just give me the code, explain what is wrong and right wiht my code"
+### AI Statement: I use AI to figure out how to fix my code for the last 3 functions. I mainly used it to figure out how to fix myloops and how to separate files into lines so that I can iterate over the files by lines. 
 
 
 ### TEST YOUR CODE DOWN HERE (IF YOU WANT TO) ###
@@ -199,3 +243,9 @@ def filter_data(input_file_csv):
 #count_word_in_file ("file2.txt", "cat")
 
 # Calling create_data_file funtion
+
+#create_data_file(Column_names, Names, Ages, Country)
+
+# Calling filter_data function
+
+#filter_data("file2.csv")
