@@ -70,15 +70,21 @@ def get_seq_type(seq):
     # You may use these lists if you want to!
     dna_chars = ["A", "G", "C", "T"]
     rna_chars = ["A", "G", "C", "U"]
-    aa_chars = codon_dict.values().unique()
+    aa_chars = set(codon_dict.values())
 
     ### YOUR CODE BELOW HERE ###
-
-    print("\nReplace this with your code!\n")
+    if "U" in seq:
+        print("This is an RNA sequence")
+    elif "T" in seq:
+        print("This is a DNA sequence")
+    elif all(char in aa_chars for char in seq):
+        print("This is a protein sequence")
+    else:
+        print("Unknown sequence")
 
     ### YOUR CODE ABOVE HERE ###
 
-    return seq_type
+    return get_seq_type
 
 # This function has been written for you. You may use it in type_of_point_mutation() if you want to!
 def split_rna_to_codons(rna_seq):
@@ -139,3 +145,10 @@ def extract_fasta_headers(filepath):
 #get_variants (seq_1,seq_3)
 
 # Calling get_seq_type function
+
+#get_seq_type ("AGUACGUGCAU")
+#get_seq_type ("AGTCAGTCACTGGTCA")
+#get_seq_type ("FYLHIK")
+
+# Calling split_rna_to_codons function
+
