@@ -1,0 +1,45 @@
+---
+title: "Image_Analysis"
+output: html_document
+date: "2026-03-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+Gel_volume <- read.csv("volume_band.txt")
+
+barplot(Gel_volume$Volume,
+        width = 1,
+        main = "Volume of Each Band",
+        xlab = "Bands",
+        ylab = "Volume of Bands")
+
+str(Gel_volume)
+
+
+```
+
+```{r}
+
+Loading_control <- read.csv("loading_control.txt")
+
+Normalized <- (Gel_volume$Volume / Loading_control$Loading)
+
+Normalized
+
+```
+
+```{r}
+
+barplot(Normalized,
+        width = 1,
+        main = "Normalized Volume of Each Band to Loading Control",
+        xlab = "Bands",
+        ylab = "Normalized Volume of Bands")
+
+
+```
+
