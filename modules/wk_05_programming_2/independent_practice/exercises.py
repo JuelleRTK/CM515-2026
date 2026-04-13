@@ -96,15 +96,63 @@ def split_rna_to_codons(rna_seq):
 # This function takes two RNA string sequences and returns the type of point mutation that differentiates them: silent, missense, or nonsense. 
 # Return "none" if the sequences are identical. You can assume there is at most one point mutation between the two sequences, and that the sequences are of equal length.
 # Hint: You can use the functions you already wrote above, and/or get_protein_seq() from last week's assignment 2.
+
+def get_protein_seq(list_of_codons):
+
+    amino_acid_list = []
+
+    codon_dict = {"UUU": "F", "UUC": "F", "UUA": "L", "UUG": "L", "UCU": "S", "UCC": "S", "UCA": "S", "UCG": "S",
+                "UAU": "Y", "UAC": "Y", "UAA": "*", "UAG": "*", "UGU": "C", "UGC": "C", "UGA": "*", "UGG": "W",
+                "CUU": "L", "CUC": "L", "CUA": "L", "CUG": "L", "CCU": "P", "CCC": "P", "CCA": "P", "CCG": "P",
+                "CAU": "H", "CAC": "H", "CAA": "Q", "CAG": "Q", "CGU": "R", "CGC": "R", "CGA": "R", "CGG": "R",
+                "AUU": "I", "AUC": "I", "AUA": "I", "AUG": "M", "ACU": "T", "ACC": "T", "ACA": "T", "ACG": "T",
+                "AAU": "N", "AAC": "N", "AAA": "K", "AAG": "K", "AGU": "S", "AGC": "S", "AGA": "R", "AGG": "R",
+                "GUU": "V", "GUC": "V", "GUA": "V", "GUG": "V", "GCU": "A", "GCC": "A", "GCA": "A", "GCG": "A",
+                "GAU": "D", "GAC": "D", "GAA": "E", "GAG": "E", "GGU": "G", "GGC": "G", "GGA": "G", "GGG": "G"}
+    
+    for codon in list_of_codons:
+
+        if codon not in codon_dict:  # checks if all codons in the list are valid
+
+            print("There is an invalid codon in your list")
+            return []
+
+        amino_acid_list.append(codon_dict[codon])
+
+    print (amino_acid_list)
+ 
+    ### YOUR CODE ABOVE HERE ###
+
+    return amino_acid_list
+
 def type_of_point_mutation(seq_1, seq_2):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    if seq_1 == seq_2:
+        return "none"
+    
+    codons_1 = split_rna_to_codons(seq_1)
+    codons_2 = split_rna_to_codons(seq_2)
 
-    ### YOUR CODE ABOVE HERE ###
+    for i in range (len(codons_1)):
+        if codons_1[i] != codons_2[i]:
+            codon1 = codons_1[i]
+            codon2 = codons_2[i]
+            break
 
-    return mutation_type
+    protein_1 = get_protein_seq(codons_1)
+    protein_2 = get_protein_seq(codons_2)
+
+    if protein_1 == protein_2:
+        return "silent"
+    
+    if "*" in protein_1 or "*" in protein_2:
+        return "nonsense"
+    
+    else:
+        return "missense"
+
 
 
 ### PART 2: FILES ###
@@ -150,5 +198,22 @@ def extract_fasta_headers(filepath):
 #get_seq_type ("AGTCAGTCACTGGTCA")
 #get_seq_type ("FYLHIK")
 
-# Calling split_rna_to_codons function
+# Calling type_of_point_mutation function
+
+#seq1 = "AUGGCUUAC"
+#seq2 = "AUGGCUUAC"
+
+#seq3 = "AUGGCUUAC"
+#seq4 = "AUGGCCUAC"
+
+#seq5 = "AUGGCUUAC"
+#seq6 = "AUGGUUUAC"
+
+#seq7 = "AUGGCUUAU"
+#seq8 = "AUGGCUUAA"
+
+#print(type_of_point_mutation(seq1, seq2))
+#print(type_of_point_mutation(seq3, seq4))
+#print(type_of_point_mutation(seq5, seq6))
+#print(type_of_point_mutation(seq7, seq8))
 
