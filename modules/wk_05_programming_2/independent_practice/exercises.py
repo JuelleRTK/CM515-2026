@@ -1,6 +1,9 @@
 ### This script is where you should input your solutions in the designated areas only. There is a space at the bottom of the file to do your own code testing.
 ### Run grading.py to grade your assignment. You may run this script as many times as you'd like; I will evaluate your submissions myself with this exact script.
 
+### AI statement: I used AI to help me figure out how to debug my for loops and to better organize my code when I ran into errors 
+
+
 # This dictionary of RNA codons to amino acid symbols may be useful for some exercises!
 codon_dict = {"UUU": "F", "UUC": "F", "UUA": "L", "UUG": "L", "UCU": "S", "UCC": "S", "UCA": "S", "UCG": "S",
                 "UAU": "Y", "UAC": "Y", "UAA": "*", "UAG": "*", "UGU": "C", "UGC": "C", "UGA": "*", "UGG": "W",
@@ -162,22 +165,29 @@ def list_files():
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    import os
+
+    files_list = os.listdir()
+
+    print(files_list)
 
     ### YOUR CODE ABOVE HERE ###
 
     return files_list
 
 # This function returns a list of all the header lines (start with '>') in a given FASTA file.
-def extract_fasta_headers(filepath):
+def extract_fasta_headers(infile):
 
     ### YOUR CODE BELOW HERE ###
 
-    print("\nReplace this with your code!\n")
+    with open (infile, "r") as fin, open ("headers.txt", "w") as headers:
+        for line in fin:
+            if ">" in line:
+                headers.write(line)
 
     ### YOUR CODE ABOVE HERE ###
 
-    return header_list
+    return "headers.txt"
 
 
 ### TEST YOUR CODE DOWN HERE (IF YOU WANT TO) ###
@@ -216,4 +226,10 @@ def extract_fasta_headers(filepath):
 #print(type_of_point_mutation(seq3, seq4))
 #print(type_of_point_mutation(seq5, seq6))
 #print(type_of_point_mutation(seq7, seq8))
+
+# Calling list_files funtion
+# list_files()
+
+# Calling extract_fasta_headers
+# extract_fasta_headers("fasta1.fa")
 
