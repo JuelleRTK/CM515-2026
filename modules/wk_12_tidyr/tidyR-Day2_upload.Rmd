@@ -7,6 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
 ```
 
 ## R Markdown
@@ -19,18 +22,32 @@ triangle + line button --> run all previous code chunks
 
 ```{r load data}
 
+tortoise_body_condition <- read.csv("cleaned_tortoiseBC.csv")
+
+clutch_size <- read.csv("cleaned_clutchSize.csv")
+
 ```
 
 
 
 ```{r Questions of Interest 1}
-#### Does it seem easier to recapture male or female tortoises?
+
+#### IS it easier to recapture male or female tortoises?
 
 #### Let's plan out what we want
-# Which dataset should we use? 
-# Which variables? 
-# What do we actually need to do?
-# What functions should we use?
+# Which dataset should we use? tortoise_body_condition
+
+# Which variables? sex and individual
+
+# What do we actually need to do? parse info of m or f -> count
+
+# What functions should we use? group_by , summarize 
+
+Sex_recapture <- tortoise_body_condition %>%
+  group_by(sex, season) %>%
+  summarise(total_recapture = n())
+
+Sex_recapture
 
 ```
 
@@ -40,14 +57,37 @@ triangle + line button --> run all previous code chunks
 #### Do recaptures happen more often in spring or summer?
 
 #### Let's plan out what we want
-# Which dataset should we use? 
-# Which variables? 
-# What do we actually need to do?
-# What functions should we use?
+
+# Which dataset should we use?  tortoise_body_condition
+
+# Which variables?  seasons 
+
+# What do we actually need to do? group_by season
+
+# What functions should we use? group_by (season -> summarize)
 
 # For one individual 
 
 # For all
+
+
+Season_recapture <- tortoise_body_condition %>%
+  group_by(season) %>%
+  summarise(tortoises = n()) 
+
+# For all
+
+Season_recapture <- tortoise_body_condition %>%
+  group_by(individual, season) %>%
+  summarise(tortoises = n())
+
+# For one individual 
+
+Season_recapture <- tortoise_body_condition %>%
+  filter(individual == "100") %>%
+  group_by(season) %>%
+  summarise(tortoises = n())
+  
 
 ```
 
@@ -58,10 +98,59 @@ triangle + line button --> run all previous code chunks
 #### Between the springs of 2016 and 2017, did the turtles grow differently based on locality?
 
 #### Let's plan out what we want
-# Which dataset should we use? 
-# Which variables? 
-# What do we actually need to do?
+
+# Which dataset should we use? tortoise_body_condition
+
+# Which variables? season (spring), year (2016 and 2017), locality , straight_carapace_length_mm (2017 - 2016)
+
+# What do we actually need to do? filter (spring, 2016 and 2017), finding the difference between years (convert back to wide data format to do math) -> pivot.wider -> difference -> summarize for each location our growth between the two years
+
 # What functions should we use?
+
+
+SCL <- tortoise_body_condition %>%
+  filter(season == "Spring") %>%
+  filter(year %in% c(2016,2017)) %>%
+  group_by(individual,year,locality) %>%
+  summarise(
+    SCL = first(straight_carapace_length_mm), 
+    .groups = "drop"
+    ) 
+
+SCL_wide <- SCL %>%
+  pivot_wider(
+    names_from = year,
+    values_from = SCL
+  )
+
+# Clean up wide data (rewrite SCL_wide)
+
+SCL_wide <- SCL_wide %>%
+  drop_na()
+
+# Column rename
+
+SCL_wide <- SCL_wide %>%
+  drop_na() %>%
+  rename(
+    yr_2016 = `2016`,
+    yr_2017 = `2017`) %>%
+  mutate(growth_2017_2016 = yr_2017 - yr_2016)
+
+
+
+#difference -> summarize for each location our growth between the two years
+
+SCL_wide %>%
+  group_by(locality) %>%
+  summarise(
+    avg_growth = mean(growth_2017_2016)
+  )
+
+  
+#check = tortoise_body_condition %>%
+ # filter(individual== "1054") %>%
+  #filter(season == "Spring")
 
 ```
 

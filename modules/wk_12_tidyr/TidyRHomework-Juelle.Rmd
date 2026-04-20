@@ -1,6 +1,6 @@
 ---
 title: "TidyR_homework"
-author: "YOUR NAME HERE"
+author: "Juelle St. Clair"
 date: "2026-03-31"
 output: pdf_document
 ---
@@ -8,6 +8,14 @@ output: pdf_document
 ## TidyR Homework
 
 In this assignment, you will be asked to select a dataset of your choice, identify any 'untidy' characteristics, make it tidy, and do some exploratory analysis. 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+```
 
 ## Question 1 (1 point)
 
@@ -22,7 +30,13 @@ Show me the first *10 rows* of your data (1 point).
 ```{r Question 1}
 #load a dataset
 
+Sea_birds <- read.csv("at-sea_seabird_observation_data_bird_data_by_record_id.csv")
+
 #output the first 10 rows of your data
+
+?head
+
+head(Sea_birds, n = 10L)
 
 ```
 
@@ -30,7 +44,7 @@ Show me the first *10 rows* of your data (1 point).
 
 Identify at least 3 non-tidy characteristics of your data or things you would like to change in this dataset (1 point ea):
 
-* 1. 
+* 1. Remove SEX clumn (has no data)
 
 * 2. 
 
@@ -41,6 +55,8 @@ Identify at least 3 non-tidy characteristics of your data or things you would li
 Show any code you used to identify these characteristics:
 
 ```{r Q2}
+
+Sea_birds$SEX 
 
 ```
 

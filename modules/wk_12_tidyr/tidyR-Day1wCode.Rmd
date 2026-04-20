@@ -415,5 +415,12 @@ write.table(clutch_size_cleaned, #name of dataframe
             col.names = T, 
             quote = F) 
 
-```
 
+```
+```{r}
+
+tortoise_body_condition_cleaned %>%
+  filter(sex == "m") %>%
+  summarise
+       
+```
