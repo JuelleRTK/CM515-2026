@@ -8,12 +8,15 @@ editor_options:
 
 ```{r setup, include=FALSE}
 
+install.packages("ggplot2")
+
 library(datasets)
 library(tidyverse)
 library(knitr)
 library(ggplot2)
 library(RColorBrewer)
 library(scales)
+
 ```
 
 # 1. Basic Plot Functions
@@ -47,6 +50,7 @@ A ton of datasets can be accessed with data().
 #02#
 ####
 data()
+
 
 ```
 
@@ -103,7 +107,7 @@ We're closer now but we didn't specify a geometry.
 #03b#
 ####
 iris %>%
-  ggplot(aes()#put in a value for x and y based on the available columns)
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width )) #put in a value for x and y based on the available columns
 
 ```
 
@@ -157,6 +161,7 @@ Shapes can be strings or numbers.
 iris %>%
   ggplot(aes(x = Sepal.Length, y = Sepal.Width)) +
   geom_line()#try customizing your points)
+  geom_point(color = "red", shape = "trianlge", alpha = 05)
 
 ```
 
@@ -207,14 +212,14 @@ species gets a unique shape and color.
 ####
 
 iris %>%
-  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species, shape = Species)) +
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, shape = Species)) +
   geom_point()
 
 iris %>%
-  ggplot(aes(x = Sepal.Length, y = Sepal.Width, shape = Species)) +
-  geom_point() 
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species, shape = Species)) +
+  geom_point(color = "blue", shape = "triangle") # will overwrite ggplot (aes()) line 
 
-
+ 
 
 ```
 
@@ -282,6 +287,7 @@ iris %>%
 iris %>%
   ggplot(aes(x = Species, y = Sepal.Length)) +
   geom_point(size=3) 
+
 ```
 
 Some of the points are overlapping. We can try using alpha here for
@@ -511,9 +517,9 @@ Come up witb some labels!
 iris %>%
   ggplot(aes(x = Sepal.Length, y = Sepal.Width, color=Sepal.Width > 3)) +
   geom_point() +
-  labs(x = "", y = "", 
-       title = "", 
-       subtitle= "",
+  labs(x = "sepal.Length", y = "sepal.Width", 
+       title = "More Irises have a sepal width less than 3", 
+       subtitle= "Yes, that is correct",
        color= "")
 
 #note- using "" for a value in labs is an easy trick if you want to have no label for an axis, title, or legend title
@@ -570,7 +576,7 @@ Look through the themes and ggthemes to find what you like best.
 #11#
 ####
 
-#install.packages("ggthemes")
+install.packages("ggthemes")
 library(ggthemes)
 
 iris %>%
@@ -578,7 +584,7 @@ iris %>%
   geom_point() +
   labs(x = "Sepal Length", y = "Sepal Width", 
        title = "Sepal Width vs. Sepal Length") +
-  theme_bw() +
+  theme_few() +
   theme(plot.title = element_text(hjust = 0.5)) 
 
 #There are A LOT of things you can do with theme
@@ -593,7 +599,7 @@ iris %>%
 
 Scales
 
-Scales allow us to define our mapping.
+Scales allow us to define our mapping. Scales provide boundaries for our values
 
 We can use scale_color_gradient or scale_color_brewer to take a
 continuous variable and make a color scheme that is both easy and
@@ -602,7 +608,7 @@ pleasant on the eyes.
 However, scale_color_brewer is only for categorical variables, not
 continuous ones.
 
-You can also use scale_color_manual to make your own colorset.
+You can also use scale_color_manual to make your own color-set.
 
 (There is also a scale_shape_manual, but I will let you figure that one
 out ;)
@@ -644,6 +650,7 @@ iris %>%
   theme_stata() +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_colour_colorblind()
+
 ```
 
 ```{r, echo=F, message=F, warning=F}
@@ -780,7 +787,8 @@ iris %>%
 
 
 
-ggsave("021124_First_Graph.jpg")
+ggsave("021124_First_Graph.jpg", dpi = ...) # dip increases resolution on saved image
+
 ```
 
 ------------------------------------------------------------------------

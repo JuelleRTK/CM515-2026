@@ -2,7 +2,10 @@
 title: "TidyR_homework"
 author: "Juelle St. Clair"
 date: "2026-03-31"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ## TidyR Homework
@@ -11,7 +14,10 @@ In this assignment, you will be asked to select a dataset of your choice, identi
 
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+
+library(knitr)
 
 library(tidyverse)
 
@@ -27,16 +33,20 @@ readr::read_csv
 
 Show me the first *10 rows* of your data (1 point).
 
-```{r Question 1}
+```{r echo=TRUE}
+
+# Question 1
+
 #load a dataset
 
-Sea_birds <- read.csv("at-sea_seabird_observation_data_bird_data_by_record_id.csv")
+edible_plants <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-02-03/edible_plants.csv')
+
 
 #output the first 10 rows of your data
 
 ?head
 
-head(Sea_birds, n = 10L)
+head(edible_plants, n = 10L)
 
 ```
 
@@ -44,19 +54,29 @@ head(Sea_birds, n = 10L)
 
 Identify at least 3 non-tidy characteristics of your data or things you would like to change in this dataset (1 point ea):
 
-* 1. Remove SEX clumn (has no data)
+* 1. change the column name 'water' to 'water requirements'
 
-* 2. 
+* 2. change the column name 'sunlight' to 'sunlight requirements'
 
-* 3. 
+* 3. change the column name 'nutrients' to 'nutrients requirements'
 
-... [add more as needed]
+* 4. change the column name 'soil' to 'preferred soil type'
+
+* 5. change the column name 'energy' to 'energy value'
+
+* 6. change the column name 'season' to 'growing season'
+
+* 7. change the column name 'requirements' to 'plant requirements' 
+
+* 8. rearrange column order 
 
 Show any code you used to identify these characteristics:
 
-```{r Q2}
+```{r echo=TRUE}
 
-Sea_birds$SEX 
+# Question 2
+
+colnames(edible_plants)
 
 ```
 
@@ -64,7 +84,30 @@ Sea_birds$SEX
 
 Fix each of your issues. Use comments to show where each of your issues listed above was fixed. Use pipes to connect fixing all of your issues together!
 
-```{r Q3}
+```{r echo=TRUE}
+
+# Question 3
+
+edible_plants_cleaned <- edible_plants %>%
+  rename(
+   `water requirements` = water,                # renamed all the columns and fixed problems 1-7 
+   `sunlight requirements` = sunlight,
+   `nutrient requirements` = nutrients,
+   `preferred soil type` = soil,
+   `energy value` = energy,
+   `growing season` = season,
+   `plant requirements` = requirements
+    ) %>%
+  relocate (taxonomic_name,
+            common_name,                        # rearranged a few columns in the data base
+            cultivation,
+            `water requirements`,
+            `sunlight requirements`,
+            temperature_germination,
+            temperature_growing,
+            temperature_class,
+            sensitivities
+            )
 
 ```
 
@@ -72,6 +115,7 @@ Fix each of your issues. Use comments to show where each of your issues listed a
 
 List a question you would like to answer using this dataset:
 
+Which cultivation has the most edible plants?
 
 
 ## Question 5 (5 points)
@@ -80,17 +124,31 @@ Using stats, plots, or both, answer your question. Make sure you output any stat
 
 NOTE: you do not have to use a formal stats test if you are not familiar! Feel free to just use summary stats and/or figures to answer your question. 
 
-```{r Q5}
+```{r echo=TRUE}
+
+# Question 5
+
+cultivations <- edible_plants_cleaned %>%
+  group_by(cultivation)%>%
+  summarise(species = n())
+
+cultivations
+
 
 ```
 
 Provide the answer (in words) to your question below:
+
+The cultivation Miscellaneous has the most edible plants species according to the dataset
 
 
 ## Question 6 (4 points)
 
 Find two functions we haven't introduced you to that are a part of tidyR, dplyr, or other related tidyverse packages. Provide the function name (including the package it's from) and what it does.
 
+The function separate() from tidyr is used to split a single column into multiple columns based on a delimiter
+
+The function case_when() from dplyr is used to create a new column (or modify one) using multiple conditional statements like if or else  
 
 
 
