@@ -1,6 +1,6 @@
 ---
 title: "CM515_Assignment_13"
-author: "Your Name"
+author: "Juelle St. Clair"
 output:
   pdf_document: default
   html_document:
@@ -53,8 +53,24 @@ Description and Interpretation:
 #01#
 ####
 
+clean_tortoise_data <- read.csv("cleaned_tortoiseBC.csv")
+
+head(clean_tortoise_data)
+
+clean_tortoise_data %>%
+  ggplot(aes(x = body_mass_grams, y = straight_carapace_length_mm, color= sex)) +
+  geom_point()+
+  labs(title = "Comparing the Mass and Shell size in Turtles of Different Sex",
+       x_lab = "Turtle Mass (g)",
+       ylab  = "Turtle Shell Length (mm)")
+
 
 ```
+
+In many species the males tend to be larger than their female counter parts. I wanted to see if that was the case in this study. According to this graph the females of this species appear to be larger in mass and shell length than their male counter parts.
+
+
+
 
 *******
 

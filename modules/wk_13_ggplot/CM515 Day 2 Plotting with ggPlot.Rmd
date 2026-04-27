@@ -330,7 +330,7 @@ This one is pretty great when you are only measuring growth for a few strains, b
 ```{r, echo=T, message=F, warning=F}
 dU_GC_tidy_Stat%>%
   ggplot(aes(x=Hours, y=mean, color=Strain)) +
-  geom_line() 
+  geom_line(width=15) 
 
 #Perfect!
 
@@ -353,7 +353,8 @@ dU_GC_tidy_Stat%>%
   ggplot(aes(x=Hours, y=mean, color=Strain, ymax=mean+se, ymin=mean-se)) +
   geom_line(size=0.5) +
   geom_point(size=1.2) +
-  geom_errorbar(width=0.1) 
+  geom_errorbar(width=0.1) +
+  labs(title = "Growth ")
 
 dU_GC_tidy_Stat%>%
   ggplot(aes(x=Hours, y=mean, color=Strain)) +
@@ -588,8 +589,6 @@ dU_GC_tidy_Stat%>%
   geom_errorbar(width=0.1, aes(x=Hours, ymax = mean+sd, ymin = mean-sd, color=Strain)) +
   theme_classic()
   
-
-
 
 ```
 
