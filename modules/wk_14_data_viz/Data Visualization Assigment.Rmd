@@ -1,0 +1,60 @@
+---
+title: "Data Visualization CM515"
+author: "Juelle"
+date: "2026-04-27"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+
+?facet_wrap
+
+mutation_rate <- read.delim("MutationRate.txt")
+
+mutation_data <- mutation_rate %>%
+  ggplot(aes(x=Genotype, y=MutationRate, color = MutationType)) +
+  geom_point() +
+  geom_jitter() +
+  facet_wrap(~Genome)
+
+mutation_data
+
+
+```
+
+First I made the Genotype my x axis/variable and Mutation rate my y axis/variable and separated them by Mutation Type (color). Then I plotted it as a scatter plot and used geom_jitter to visualize each replication, using facet_wrap to visualized the mutations in both Genomes (Mito and Plastid). Based on this graph, using a linear scale, I can see that MSH1 plays a significant role in maintaining a low mutation rate. While a log scale shows that there is a difference in mutation rate between the radA genotype and the wild type, it is not significant enough for me to choose that scale as opposed to the linear one. I feel like I gain a lot more useful information from using the linear scale. 
+
+
+
+```{r}
+
+
+mutation_data2 <- mutation_rate %>%
+  ggplot(aes(x=Genotype, y=MutationRate)) +
+  geom_point() +
+  geom_jitter() +
+  stat_summary(fun =mean, geom = "col")+
+  facet_grid(Genome ~ MutationType)
+
+mutation_data2
+
+
+```
+
+In this graph my group decided to use stat_summary and facet_grid as opposed to facet_wrap to divide the data not only by Genome but by Mutation Type as well, instead of using colors to separate the data by Mutation Type. This way its much easier to see that the MSH1 gene seems to be responsible for maintaining low mutation rates of mostly Indels in the Plastid Genome. 
+
+
+
+
+
+
+
+
+
+
+

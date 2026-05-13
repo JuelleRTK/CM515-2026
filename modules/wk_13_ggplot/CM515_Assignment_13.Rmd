@@ -48,6 +48,8 @@ library(ggplot2)
 
 Description and Interpretation:
 
+In many species the males tend to be larger than their female counter parts. I wanted to see if that was the case in this study. According to this graph the females of this species appear to be larger in mass and shell length than their male counter parts.
+
 ```{r}
 ####
 #01#
@@ -57,18 +59,17 @@ clean_tortoise_data <- read.csv("cleaned_tortoiseBC.csv")
 
 head(clean_tortoise_data)
 
-clean_tortoise_data %>%
+tortoise_data <- clean_tortoise_data %>%
   ggplot(aes(x = body_mass_grams, y = straight_carapace_length_mm, color= sex)) +
   geom_point()+
-  labs(title = "Comparing the Mass and Shell size in Turtles of Different Sex",
-       x_lab = "Turtle Mass (g)",
-       ylab  = "Turtle Shell Length (mm)")
+  labs(title = "Comparing the Mass and Shell size in Tortoises of Different Sex",
+       x = "Tortoise Mass (g)",
+       y = "Tortoise Shell Length (mm)")
+
+tortoise_data
 
 
 ```
-
-In many species the males tend to be larger than their female counter parts. I wanted to see if that was the case in this study. According to this graph the females of this species appear to be larger in mass and shell length than their male counter parts.
-
 
 
 
@@ -80,12 +81,31 @@ In many species the males tend to be larger than their female counter parts. I w
 
 Description and Interpretation:
 
+Both fit lines (male and female) show a positive relationship between body mass and shell length. As their body mass increases so does there shell length, which is to be expected. However the male fit line is above the female fit line, which means that for any given body mass, the males have a longer shell length than the females. This indicates that males are more streamlined or have a different shape, while females of the same mass might be denser or have a more voluminous/domed shell.
+
 ```{r}
 ####
 #02#
 ####
 #your code here
 
+?geom_smooth()
+
+tortoise_data_2 <- clean_tortoise_data %>%
+  ggplot(aes(x = body_mass_grams, 
+             y = straight_carapace_length_mm, 
+             color = sex)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Comparing Mass and Shell Size in Turtles of Different Sexes",
+    x = "Turtle Mass (g)",
+    y = "Turtle Shell Length (mm)"
+  )
+ 
+
+tortoise_data_2
+       
 ```
 
 # 3. Set the transparency, shape, and color of your graph from 1 based on expressions. Scale the color. (3pts)
@@ -94,11 +114,26 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+I chose an alpha of 0.5 so that the points were not over-shadowing one another too much. I also changed the colors to purple and pale-green so that I was easier to distinguish between values of male tortoises vs female tortoises. 
+
 ```{r}
 ####
 #03#
 ####
 #your code here
+
+tortoise_data_3 <- clean_tortoise_data %>%
+  ggplot(aes(x = body_mass_grams,
+             y = straight_carapace_length_mm,
+             color = sex,
+             shape = sex)) +
+  geom_point(alpha = 0.5) +
+  scale_color_manual(values = c("f" = "purple","m" = "palegreen")) +
+  labs( title = "Mass and Shell Size in Tortoises",
+    x = "Tortoise Mass (g)",
+    y = "Tortoise Shell Length (mm)")
+
+tortoise_data_3
 
 ```
 
@@ -110,11 +145,24 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+The boxplot provides a concise summary of the body mass distribution for both male and female tortoises, highlighting key differences in their variability. A higher median in the female tortoises suggests sexual dimorphism in size, while the differences in box indicates that one sex (females) has a more consistent growth pattern than the other (male).
+
 ```{r}
 ####
 #04#
 ####
 #your code here
+
+tortoise_boxplot <- clean_tortoise_data %>%
+  ggplot(aes(x = sex, y = body_mass_grams, fill = sex)) +
+  geom_boxplot(width = 0.5) +
+  labs(
+    title = "Boxplot Showing the Body Mass by Sex of the Tortoises",
+    x = "Sex",
+    y = "Body Mass (g)"
+  )
+
+tortoise_boxplot
 
 ```
 
@@ -126,11 +174,28 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+This boxplot with jittered points compares body mass between male and female tortoises. The female group appears to have a higher median body mass and a wider spread, suggesting that females are generally larger and more variable in weight than males.
+
 ```{r}
 ####
 #05#
 ####
 #your code here
+
+tortoise_overlay <- clean_tortoise_data %>%
+  ggplot(aes(x = sex, y = body_mass_grams, fill = sex)) +
+  geom_boxplot(width = 0.5, alpha = 0.35, outlier.shape = NA, color = "gray30") +
+  geom_jitter(width = 0.12, height = 0, size = 1.2, alpha = 0.18, color = "black") +
+  scale_fill_manual(values = c("f" = "#E69F00", "m" = "#56B4E9")) +
+  labs(
+    title = "Body Mass by Sex in Tortoises",
+    x = "Sex",
+    y = "Body Mass (g)"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(legend.position = "none")
+
+tortoise_overlay
 
 ```
 
@@ -140,11 +205,29 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+The plot shows a positive relationship between body mass and straight carapace length, meaning larger tortoises tend to have longer shells. Zooming in on the central range makes that trend easier to see because a few very large individuals no longer stretch the axes and compress the rest of the points.
+
 ```{r}
 ####
 #06#
 ####
 #your code here
+
+tortoise_scale_plot <- clean_tortoise_data %>%
+  ggplot(aes(x = body_mass_grams, y = straight_carapace_length_mm, color = sex)) +
+  geom_point(alpha = 0.5, size = 2) +
+  labs(
+    title = "Relationship Between Body Mass and Carapace Length",
+    x = "Body Mass (g)",
+    y = "Straight Carapace Length (mm)",
+    color = "Sex"
+  ) +
+  scale_x_continuous(breaks = seq(500, 2500, by = 500)) +
+  scale_y_continuous(breaks = seq(140, 220, by = 20)) +
+  coord_cartesian(xlim = c(500, 2500), ylim = c(140, 220)) +
+  theme_classic()
+
+tortoise_scale_plot
 
 ```
 
@@ -156,10 +239,26 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+This plot shows the distribution of tortoise body mass within each locality by sex, with separate panels making it easy to compare patterns between groups. It suggests that the Plateau tends to have more tortoises with a greater body mass than the other two locations.
+
 ```{r}
 #07#
 ####
 #your code here
+
+tortoise_facet <- clean_tortoise_data %>%
+  ggplot(aes(x = body_mass_grams, fill = sex)) +
+  geom_histogram(bins = 30, alpha = 0.6, position = "identity") +
+  facet_wrap(~ locality) +
+  labs(
+    title = "Distribution of Body Mass by Locality",
+    x = "Body Mass (g)",
+    y = "Count",
+    fill = "Sex"
+  ) +
+  theme_classic()
+
+tortoise_facet
 
 ```
 
@@ -169,10 +268,28 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+Reversing the facet order makes the panels appear in the opposite direction, and the color scale helps distinguish males from females more clearly. The plot makes it easier to compare whether one locality has generally larger or smaller tortoises and whether the sex distribution differs between locations.
+
 ```{r}
 #08#
 ####
 #your code here
+
+tortoise_reorder <- clean_tortoise_data %>%
+  mutate(locality = factor(locality, levels = rev(unique(locality)))) %>%
+  ggplot(aes(x = body_mass_grams, fill = sex)) +
+  geom_histogram(bins = 30, alpha = 0.7, position = "identity", color = "white") +
+  facet_wrap(~ locality) +
+  scale_fill_manual(values = c("f" = "#D95F02", "m" = "#1B9E77")) +
+  labs(
+    title = "Distribution of Body Mass by Locality",
+    x = "Body Mass (g)",
+    y = "Count",
+    fill = "Sex"
+  ) +
+  theme_classic()
+
+tortoise_reorder
 
 ```
 
@@ -184,11 +301,30 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+This violin plot compares the distribution of body mass between female and male tortoises. The width of each violin shows where the data are most concentrated, based on the plot the body mass of male tortoises are concentrated around 1000 g where as the body mass of the female tortoises are more varied/spread out. This plot suggests that females tend to have higher body mass overall than males, though there is still overlap between the two groups.
+
 ```{r}
 ####
 #09#
 ####
 #your code here 
+
+?geom_violin
+
+tortoise_violin <- clean_tortoise_data %>%
+  ggplot(aes(x = sex, y = body_mass_grams, fill = sex)) +
+  geom_violin(trim = FALSE, alpha = 0.7, color = "gray30") +
+  geom_boxplot(width = 0.12, outlier.shape = NA, alpha = 0.4) +
+  labs(
+    title = "Distribution of Body Mass by Sex",
+    x = "Sex",
+    y = "Body Mass (g)",
+    fill = "Sex"
+  ) +
+  theme_classic()
+
+tortoise_violin
+
 ```
 
 # 10. Make a Plot Using a ggplot Extension That Was Not Covered in Class. Explain what the extension does. (4pts)
@@ -197,11 +333,34 @@ Description and Interpretation:
 
 Description and Interpretation:
 
+ggMarginal() is a ggplot2 extension that adds marginal plots around a scatterplot.
+
+This plot shows the relationship between body mass and straight carapace length in tortoises, separated by sex. The marginal histograms show how the two variables are distributed overall, body mass on the top and shell length to the right, which makes the figure more informative than a scatter plot alone. It suggests that larger tortoises tend to have longer shells. 
+
 ```{r}
 ####
 #10#
 ####
 #your code here 
+
+library(ggplot2)
+#install.packages("ggExtra")
+library(ggExtra)
+
+New_extension <- clean_tortoise_data %>%
+  ggplot(aes(x = body_mass_grams, y = straight_carapace_length_mm, color = sex)) +
+  geom_point(alpha = 0.5, size = 2) +
+  labs(
+    title = "Body Mass and Carapace Length in Tortoises",
+    x = "Body Mass (g)",
+    y = "Straight Carapace Length (mm)",
+    color = "Sex"
+  ) +
+  theme_classic()
+
+ggMarginal(New_extension, type = "histogram", fill = "gray70", alpha = 0.6)
+
+
 ```
 
 ******
